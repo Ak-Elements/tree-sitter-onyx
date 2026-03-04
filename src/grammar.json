@@ -2,7 +2,7 @@
   "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
   "name": "onyx",
   "rules": {
-    "source_file": {
+    "compilation_unit": {
       "type": "REPEAT",
       "content": {
         "type": "SYMBOL",
@@ -170,6 +170,10 @@
         {
           "type": "SYMBOL",
           "name": "initializer_list"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "literal"
         }
       ]
     },
@@ -476,8 +480,17 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "expression"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "expression"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "designated_initializer"
+                }
+              ]
             },
             {
               "type": "REPEAT",
@@ -489,8 +502,17 @@
                     "value": ","
                   },
                   {
-                    "type": "SYMBOL",
-                    "name": "expression"
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "expression"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "designated_initializer"
+                      }
+                    ]
                   }
                 ]
               }
@@ -565,6 +587,23 @@
         {
           "type": "SYMBOL",
           "name": "initializer_list"
+        }
+      ]
+    },
+    "designated_initializer": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
         }
       ]
     },

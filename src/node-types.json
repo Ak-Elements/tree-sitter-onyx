@@ -112,6 +112,10 @@
       "required": true,
       "types": [
         {
+          "type": "designated_initializer",
+          "named": true
+        },
+        {
           "type": "expression",
           "named": true
         }
@@ -152,6 +156,22 @@
     "type": "boolean_literal",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "compilation_unit",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "type_declaration",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "component_declaration",
@@ -203,6 +223,21 @@
         },
         {
           "type": "field_declaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "designated_initializer",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
           "named": true
         }
       ]
@@ -356,6 +391,10 @@
         {
           "type": "initializer_list",
           "named": true
+        },
+        {
+          "type": "literal",
+          "named": true
         }
       ]
     }
@@ -420,22 +459,6 @@
           }
         ]
       }
-    }
-  },
-  {
-    "type": "source_file",
-    "named": true,
-    "root": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "type_declaration",
-          "named": true
-        }
-      ]
     }
   },
   {

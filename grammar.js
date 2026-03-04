@@ -103,7 +103,8 @@ export default grammar({
 
     field_initializer: $ => choice(
         $.assignment_expression,
-        $.initializer_list
+        $.initializer_list,
+        $.literal
     ),
 
     assignment_expression: $ => seq(
@@ -163,7 +164,7 @@ export default grammar({
 
     attribute_arguments: $ => seq(
       '(',
-      commaSep1($.expression),
+      commaSep1(choice($.expression, $.designated_initializer)),
       ')'
     ),
 
@@ -183,7 +184,7 @@ export default grammar({
     expression: $ => choice(
         $.literal,
         $.identifier,
-        $.initializer_list
+        $.initializer_list,
     ),
 
     initializer_list: $ => seq(
@@ -192,6 +193,12 @@ export default grammar({
     '}'
     ),
 
+    designated_initializer: $ => seq(
+    $.identifier,
+    '=',
+    $.expression
+    ),
+    
     _name: $ => choice(
         $.alias_qualified_name,
         $.qualified_name,
